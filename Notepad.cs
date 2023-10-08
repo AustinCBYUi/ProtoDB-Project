@@ -12,6 +12,8 @@ namespace ProtoDB_Project
         private string _userEntry1;
         private string _userEntry2;
         private List<Note> _notes = new List<Note>();
-        public Notepad() { }
+        public Notepad() 
+        {
+        }
     }
 }

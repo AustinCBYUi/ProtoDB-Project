@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProtoDB_Project
+{
+    internal class Policies
+    {
+        private string _userName;
+        private string _password;
+        private int _policy;
+
+
+        private void CreateNewUser(string userName, string password, int policy)
+        {
+            _userName = userName;
+            _password = password;
+            _policy = policy;
+        }
+    }
+}
