@@ -25,5 +25,12 @@ namespace ProtoDB_Project
             _password = password;
             _policy = policy;
         }
+
+        private string Login(string userName, string password)
+        {
+            string loginSuccess = $"Welcome back {userName} ({_policy})";
+            string loginFailure = $"That password or username combo does not exist or is incorrect, please try again.";
+            return _userName;
+        }
     }
 }
