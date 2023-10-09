@@ -13,6 +13,12 @@ namespace ProtoDB_Project
         private int _policy;
 
 
+        public Policies(string userName, string password, int policy)
+        {
+            CreateNewUser(userName, password, policy);
+        }
+
+
         private void CreateNewUser(string userName, string password, int policy)
         {
             _userName = userName;
