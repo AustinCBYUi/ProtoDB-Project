@@ -12,18 +12,13 @@ var GREEN = ConsoleColor.Green;
 Menu newMenu = new Menu();
 WriteColor($"{newMenu.Title}", RED);
 WriteColor("Author: Austin Campbell", CYAN);
+WriteColor("** Type -h, --help, or /? for additional commands **", CYAN);
+WriteColor("** type -quit to quit **", CYAN);
+WriteColor(newMenu.cmds, CYAN);
 bool exitProgram = false;
 
 while (exitProgram != true)
 {
-
-
-    WriteColor("** Type -h, --help, or /? for additional commands **", CYAN);
-    WriteColor("** type -quit to quit **", CYAN);
-
-
-
-    WriteColor(newMenu.cmds, CYAN);
     WriteColor(">> ", MAGENTA);
     string userInput = Console.ReadLine();
 
@@ -37,12 +32,12 @@ while (exitProgram != true)
             string[] splits = userInput.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
             string getCmd = newMenu.Help(splits[1]);
             WriteColor(getCmd, GREEN);
-            newMenu.ShowSpinner(6);
+            newMenu.ShowSpinner(1);
         }
         else
         {
             WriteColor(newMenu.cmds, GREEN);
-            newMenu.ShowSpinner(6);
+            newMenu.ShowSpinner(1);
         }
     }
     else
