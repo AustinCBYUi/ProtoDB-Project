@@ -1,5 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+using System.Data.SQLite;
 using ProtoDB_Project;
+using ProtoDB_Project.src;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
@@ -47,6 +50,22 @@ while (exitProgram != true)
             case "-quit":
                 exitProgram = true;
                 Environment.Exit(0);
+                break;
+            case "-createuser":
+                Policies newUser = new Policies();
+                string userName = newUser.GetUserName();
+                int policy = newUser.GetPolicy();
+                //Add userName and policy to database?
+                DatabaseManager createDB = new DatabaseManager();
+                SQLiteConnection test = createDB.CreateConnection("users.db");
+                createDB.InsertData(test, userName, policy);
+                createDB.ReadData(test);
+                break;
+            case "-readusers":
+                DatabaseManager viewDB = new DatabaseManager();
+                SQLiteConnection test2 = viewDB.CreateConnection("users.db");
+                WriteColor("Results fetched from DB", GREEN);
+                viewDB.ReadData(test2);
                 break;
         }
     }

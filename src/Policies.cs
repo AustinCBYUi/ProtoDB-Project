@@ -13,17 +13,23 @@ namespace ProtoDB_Project
         private int _policy;
 
 
-        public Policies(string userName, string password, int policy)
+        public Policies()
         {
-            CreateNewUser(userName, password, policy);
+            CreateNewUser();
         }
 
 
-        private void CreateNewUser(string userName, string password, int policy)
+        public string GetUserName() { return _userName; }
+        public int GetPolicy() { return _policy; }
+
+
+        private void CreateNewUser()
         {
-            _userName = userName;
-            _password = password;
-            _policy = policy;
+            Console.Write("UserName: ");
+            _userName = Console.ReadLine();
+            Console.Write("Password: ");
+            _password = Console.ReadLine();
+            _policy = 0;
         }
 
         private string Login(string userName, string password)

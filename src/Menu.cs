@@ -25,6 +25,7 @@ namespace ProtoDB_Project
               | -quit - Quits the program           | -createbp - creates billpay reminder
               | -bpremind - Shows upcoming bills    | -paylog - Opens paycheck logger module
               | -debtlog - Opens Debt Logger Module | -login - Opens form to login w/ user/pass
+              | -readusers - Reads from database    |
 ";
         //fd is field designer, pe is policy editor
 
