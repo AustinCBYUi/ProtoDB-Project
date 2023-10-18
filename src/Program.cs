@@ -13,6 +13,7 @@ var GREEN = ConsoleColor.Green;
 
 
 Menu newMenu = new Menu();
+BillPayReminder newMainReminder = new BillPayReminder();
 WriteColor($"{newMenu.Title}", RED);
 WriteColor("Author: Austin Campbell", CYAN);
 WriteColor("** Type -h, --help, or /? for additional commands **", CYAN);
@@ -47,19 +48,20 @@ while (exitProgram != true)
     }
     else
     {
-        BillPayReminder newMainReminder = new BillPayReminder();
         switch (userInput)
         {
             case "-quit":
                 exitProgram = true;
                 Environment.Exit(0);
                 break;
+            //create user
             case "-createuser":
                 Policies newUser = new Policies();
                 string userName = newUser.GetUserName();
                 string password = newUser.GetPassword();
                 int policy = newUser.GetPolicy();
                 break;
+            //create bill to pay
             case "-createbp":
                 Console.WriteLine("Bill name: ");
                 string name = Console.ReadLine();
@@ -73,9 +75,12 @@ while (exitProgram != true)
                 CreateBillPay newBill = new CreateBillPay(name, date, amount, paidOrNot);
                 newMainReminder.AddBillToList(newBill);
                 break;
-            case "-seebp":
+            //view bills to pay
+            case "-viewbp":
                 newMainReminder.ViewBills(newMainReminder);
                 break;
+            //export bills to pay as json. Once exported it will always load in the json on startup.
+            //TODO Implement feature to auto-load bills json if it exists, if not, don't throw any errors.
             case "-exportbp":
                 Clear();
                 newMainReminder.ExportBillReminder();

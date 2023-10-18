@@ -17,6 +17,8 @@ namespace ProtoDB_Project.src
         private double _paymentAmount;
         private bool _isPaid;
 
+
+
         /// <summary>
         /// Creates a new bill with parameters specified, then throws a quick console check with user input
         /// to see if bill has been paid yet or not.
@@ -48,6 +50,37 @@ namespace ProtoDB_Project.src
         public bool IsPaid()
         {
             return _isPaid;
+        }
+
+
+
+        /// <summary>
+        /// Converts _isPaid boolean to a string where False = No, and True = Yes.
+        /// </summary>
+        /// <returns>Yes or No as a string.</returns>
+        private string IsPaidConvert()
+        {
+            string replace = "";
+            if (_isPaid)
+            {
+                replace = "Yes";
+            }
+            else
+            {
+                replace = "No";
+            }
+            return replace;
+        }
+
+
+        /// <summary>
+        /// Formats the bill for BillPayReminder main class to print to user.
+        /// </summary>
+        /// <returns>Formatted string for printing the bill.</returns>
+        public string FormatBill()
+        {
+            string newStr = $"Bill: {_billName} - Due on: {_dateDue} ---- Amount: ${_paymentAmount} | Paid?: {IsPaidConvert()}";
+            return newStr;
         }
 
         

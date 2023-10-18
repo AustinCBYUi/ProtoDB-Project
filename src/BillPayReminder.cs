@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProtoDB_Project.src
 {
+    //TODO Document all methods and classname ASAP.
     internal class BillPayReminder
     {
         private List<CreateBillPay> _bills = new List<CreateBillPay>();
-
-        public BillPayReminder()
-        {
-        }
 
         Menu setColor = new Menu();
 
@@ -25,12 +22,19 @@ namespace ProtoDB_Project.src
 
         public void ViewBills(BillPayReminder manager)
         {
-            Console.WriteLine(manager._bills);
             int counter = 0;
-            foreach (CreateBillPay bill in manager._bills) 
+            foreach (CreateBillPay bill in _bills) 
             {
                 counter += 1;
-                Console.WriteLine($"{counter} - {bill}");
+                if (bill.IsPaid())
+                {
+                    setColor.WriteColor($"{counter} => {bill.FormatBill()}", ConsoleColor.Green);
+                }
+                //TODO Add DateTime stamp so if a bill is due in the next 5 days, the viewbp will display yellow.
+                else if (!bill.IsPaid())
+                {
+                    setColor.WriteColor($"{counter} => {bill.FormatBill()}", ConsoleColor.Red);
+                }
             }
         }
 
