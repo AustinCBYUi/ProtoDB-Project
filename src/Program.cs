@@ -22,6 +22,8 @@ bool exitProgram = false;
 
 while (exitProgram != true)
 {
+    //TopLine Constructors
+
     WriteColor(">> ", MAGENTA);
     string userInput = Console.ReadLine();
 
@@ -45,6 +47,7 @@ while (exitProgram != true)
     }
     else
     {
+        BillPayReminder newMainReminder = new BillPayReminder();
         switch (userInput)
         {
             case "-quit":
@@ -54,23 +57,41 @@ while (exitProgram != true)
             case "-createuser":
                 Policies newUser = new Policies();
                 string userName = newUser.GetUserName();
+                string password = newUser.GetPassword();
                 int policy = newUser.GetPolicy();
-                //Add userName and policy to database?
-                DatabaseManager createDB = new DatabaseManager();
-                SQLiteConnection test = createDB.CreateConnection("users.db");
-                createDB.InsertData(test, userName, policy);
-                createDB.ReadData(test);
+                break;
+            case "-createbp":
+                Console.WriteLine("Bill name: ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Due Date (DD/MMM/YYYY: ");
+                string date = Console.ReadLine();
+                Console.WriteLine("Amount: ");
+                double amount = double.Parse(Console.ReadLine());
+                Console.WriteLine("Is bill paid?: ");
+                string paidOrNot = Console.ReadLine();
+
+                CreateBillPay newBill = new CreateBillPay(name, date, amount, paidOrNot);
+                newMainReminder.AddBillToList(newBill);
+                break;
+            case "-seebp":
+                newMainReminder.ViewBills(newMainReminder);
+                break;
+            case "-exportbp":
+                Clear();
+                newMainReminder.ExportBillReminder();
                 break;
             case "-readusers":
-                DatabaseManager viewDB = new DatabaseManager();
-                SQLiteConnection test2 = viewDB.CreateConnection("users.db");
                 WriteColor("Results fetched from DB", GREEN);
-                viewDB.ReadData(test2);
                 break;
         }
     }
 }
 
+
+static void Clear()
+{
+    Console.Clear();
+}
 
 
 static void WriteColor(string msg, ConsoleColor color)

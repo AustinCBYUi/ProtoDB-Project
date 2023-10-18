@@ -69,6 +69,22 @@ namespace ProtoDB_Project
         }
 
 
+        public void WriteColor(string msg, ConsoleColor color)
+        {
+            if (msg.StartsWith(">> "))
+            {
+                Console.ForegroundColor = color;
+                Console.Write($"{msg} ");
+            }
+            else
+            {
+                Console.ForegroundColor = color;
+                Console.WriteLine(msg);
+                Console.ResetColor();
+            }
+        }
+
+
 
         /// <summary>
         /// Method to retrieve command descriptions that are built in to the command line interface.

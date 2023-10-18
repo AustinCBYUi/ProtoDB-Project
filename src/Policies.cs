@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Security.Principal;
 
 namespace ProtoDB_Project
 {
@@ -22,6 +25,8 @@ namespace ProtoDB_Project
         public string GetUserName() { return _userName; }
         public int GetPolicy() { return _policy; }
 
+        public string GetPassword() { return _password;}
+
 
         private void CreateNewUser()
         {
@@ -31,6 +36,7 @@ namespace ProtoDB_Project
             _password = Console.ReadLine();
             _policy = 0;
         }
+
 
         private string Login(string userName, string password)
         {
