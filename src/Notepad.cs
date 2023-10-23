@@ -92,10 +92,10 @@ namespace ProtoDB_Project
                 {
                     foreach (Note note in _notes)
                     {
-                        output.WriteLine($"Notepad Name: {_notepadName}");
-                        output.WriteLine($"{note.FormatTopicNote()}");
-                        output.WriteLine($"{note.FormatEntry()}");
-                        output.WriteLine("----------------------------------------------");
+                        output.WriteLine($">>> Notepad Name: {_notepadName} <<<");
+                        output.WriteLine($"**Note Topic: {note.FormatTopicNote()}**");
+                        output.WriteLine($"- {note.FormatEntry()}");
+                        output.WriteLine("----------------------------------------------------");
                     }
                 }
                 setColor.WriteColor("Notepad written!", ConsoleColor.Green);

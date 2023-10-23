@@ -24,7 +24,7 @@ namespace ProtoDB_Project
         /// <returns></returns>
         public string FormatTopicNote()
         {
-            string newFormat = $"       Topic: {_topic}";
+            string newFormat = $"Topic: {_topic}";
             return newFormat;
         }
 
