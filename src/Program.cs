@@ -48,6 +48,7 @@ while (exitProgram != true)
     }
     else
     {
+        newMainReminder.ImportBillReminder(newMainReminder);
         switch (userInput)
         {
             case "-quit":
@@ -65,12 +66,12 @@ while (exitProgram != true)
             case "-createbp":
                 Console.WriteLine("Bill name: ");
                 string name = Console.ReadLine();
-                Console.WriteLine("Due Date (DD/MMM/YYYY: ");
+                Console.WriteLine("Due Date (MM/DD/YYYY: ");
                 string date = Console.ReadLine();
                 Console.WriteLine("Amount: ");
                 double amount = double.Parse(Console.ReadLine());
                 Console.WriteLine("Is bill paid?: ");
-                string paidOrNot = Console.ReadLine();
+                string paidOrNot = Console.ReadLine().ToLower();
 
                 CreateBillPay newBill = new CreateBillPay(name, date, amount, paidOrNot);
                 newMainReminder.AddBillToList(newBill);
@@ -79,14 +80,22 @@ while (exitProgram != true)
             case "-viewbp":
                 newMainReminder.ViewBills(newMainReminder);
                 break;
-            //export bills to pay as json. Once exported it will always load in the json on startup.
-            //TODO Implement feature to auto-load bills json if it exists, if not, don't throw any errors.
-            case "-exportbp":
-                Clear();
-                newMainReminder.ExportBillReminder();
+            case "-savebp":
+                newMainReminder.ExportBillReminder(newMainReminder);
+                WriteColor("Wrote File to Data", GREEN);
                 break;
-            case "-readusers":
-                WriteColor("Results fetched from DB", GREEN);
+
+            case "-notes":
+                Notepad newNotepad = new Notepad();
+                newNotepad.Start(newNotepad);
+                break;
+            
+
+                //Tester case
+            case "-test":
+                CreateBillPay newBillTest = new CreateBillPay("eh", "10/26/2023", 55, "yes");
+                string test = newBillTest.IsBillDue();
+                Console.WriteLine(test);
                 break;
         }
     }

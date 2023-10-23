@@ -6,16 +6,13 @@
     <RootNamespace>ProtoDB_Project</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <BaseOutputPath>C:\Users\infra\source\repos\ProtoDB Project\src\data</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SQLite" Version="3.13.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="src\data\" />
   </ItemGroup>
 
 </Project>

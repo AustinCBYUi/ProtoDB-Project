@@ -83,6 +83,52 @@ namespace ProtoDB_Project.src
             return newStr;
         }
 
+
+        /// <summary>
+        /// Formats the bill for BillPayReminder main class to import/export to/from BillPaidReminders.txt file.
+        /// </summary>
+        /// <returns>Formatted string for importing/exporting the bill.</returns>
+        public string FormatExport()
+        {
+            string newStr = $"{_billName}|{_dateDue}|{_paymentAmount}|{IsPaidConvert()}";
+            return newStr;
+        }
+
         
+        /// <summary>
+        /// Function to check if the bill is due soon, not soon or past due.
+        /// </summary>
+        /// <returns>String that is represented as NOTSOON, SOON or PASTDUE.</returns>
+        public string IsBillDue()
+        {
+            //NOTSOON anytime
+            //SOON <= 5 days from duedate
+            //PASTDUE > DueDate
+            //Will be represented as NOTSOON, SOON, and PASTDUE
+            string isDue = "";
+            DateTime getNow = DateTime.Today;
+
+            string now = getNow.ToString("d");
+            //THIS IS THE BILLS DUE DATE
+            DateTime dueDate = DateTime.Parse(_dateDue);
+            //Takes the bills due date and adds 5 days to it.
+            DateTime projectionDueDate = dueDate.AddDays(-5);
+
+            if (getNow > dueDate)
+            {
+                isDue = "PASTDUE";
+            }
+            //If today (10/22/2023) is equal to the projectionDueDate (set at 10/27/2023 so it would be 10/22/2023)
+            //OR if today (10/22/2023) is greater than or equal to projectionDueDate (10/22/2023)
+            else if (getNow == projectionDueDate || getNow >= projectionDueDate)
+            {
+                isDue = "SOON";
+            }
+            else if (getNow < dueDate)
+            {
+                isDue = "NOTSOON";
+            }
+            return isDue;
+        }
     }
 }

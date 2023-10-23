@@ -8,6 +8,7 @@ namespace ProtoDB_Project
 {
     internal class Menu
     {
+        DateTime today = DateTime.Today;
         private string _title = @"
                 ██████╗░██████╗░░█████╗░████████╗░█████╗░░░░░░░██████╗░██████╗░
                 ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗░░░░░░██╔══██╗██╔══██╗
@@ -35,7 +36,10 @@ namespace ProtoDB_Project
 
 
 
-
+        /// <summary>
+        /// Shows a spinner with optional duration.
+        /// </summary>
+        /// <param name="optionalSecs">Optional duration, defaulted to 5 seconds.</param>
         public void ShowSpinner(int optionalSecs = 5)
         {
             List<string> animatedStrings = new List<string>{
@@ -69,6 +73,12 @@ namespace ProtoDB_Project
         }
 
 
+        /// <summary>
+        /// Can replace the default Console.WriteLine -> MenuClass.WriteColor("Message", ConsoleColor.Red) to display colored
+        /// messages.
+        /// </summary>
+        /// <param name="msg">String you want displayed in console. Can use Format strings.</param>
+        /// <param name="color">User specified text color.</param>
         public void WriteColor(string msg, ConsoleColor color)
         {
             if (msg.StartsWith(">> "))
