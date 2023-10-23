@@ -36,7 +36,7 @@ namespace ProtoDB_Project
                 Console.Write(@"
                 n = New note
                 e = Export notepad
-                ] = Exit Notes module
+                / = Exit Notes module
                 ");
                 string inputForSwitch = Console.ReadLine().ToLower();
                 
@@ -53,7 +53,7 @@ namespace ProtoDB_Project
                         getPad.AddNoteToList(newNote);
                         break;
                         //Quit
-                    case "]":
+                    case "/":
                         userQuit = true;
                         break;
                     case "e":
@@ -75,6 +75,10 @@ namespace ProtoDB_Project
         }
 
 
+        /// <summary>
+        /// Displays notes with no special format.
+        /// </summary>
+        /// <param name="getPad">Primary notepad manager as a param.</param>
         protected void ViewNotes(Notepad getPad)
         {
             foreach (Note note in _notes)
@@ -84,6 +88,10 @@ namespace ProtoDB_Project
         }
 
 
+        /// <summary>
+        /// Exports notes to a text file.
+        /// </summary>
+        /// <param name="getPad">Primary notepad manager as a param.</param>
         public void ExportNotepad(Notepad getPad)
         {
             try
@@ -98,7 +106,7 @@ namespace ProtoDB_Project
                         output.WriteLine("----------------------------------------------------");
                     }
                 }
-                setColor.WriteColor("Notepad written!", ConsoleColor.Green);
+                setColor.WriteColor("Notes written!", ConsoleColor.Green);
             }
             catch (Exception ex) 
             {

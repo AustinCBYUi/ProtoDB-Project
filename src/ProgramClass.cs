@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace ProtoDB_Project.src
 {
     /// <summary>
-    /// Reference to the classes in a planner program, this would contain main classes and inherited classes.
+    /// Reference to the classes in a planned program.
     /// </summary>
-    internal class ProgramClasses : ProgramPlanner
+    internal class ProgramClass : ProgramPlanner
     {
+
     }
 }
