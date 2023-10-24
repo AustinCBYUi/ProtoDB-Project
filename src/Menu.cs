@@ -19,7 +19,7 @@ namespace ProtoDB_Project
         ";
 
         private string _menuOptions = @"
-    Commands: | -pd - Opens Product Designer Module | -fd - Opens Fields Designer Module
+    Commands: | -pd - Opens Product Designer Module | -fd - Opens Field Designer Module
               | -pe - Opens Policy Editor Module    | -notes - Opens Notepad Module 
               | -exnotes - Extracts notes in format | -expd - Extracts Program Design
               | -exfd - Extracts Fields Design      | -newuser - Creates a new user

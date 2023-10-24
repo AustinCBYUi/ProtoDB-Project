@@ -26,7 +26,7 @@ namespace ProtoDB_Project
         /// </summary>
         public void Start(Notepad getPad)
         {
-            setColor.WriteColor("Please type ] to end the note.", ConsoleColor.Yellow);
+            setColor.WriteColor("Please type / to end the note.", ConsoleColor.Yellow);
             setColor.WriteColor("Continue your note until you move on to a different topic.\nType n to create a new note after your previous, ] to exit.", ConsoleColor.Cyan);
             setColor.WriteColor("Notepad Name: ", ConsoleColor.White);
             getPad._notepadName = Console.ReadLine();

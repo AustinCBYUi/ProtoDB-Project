@@ -14,6 +14,8 @@ var GREEN = ConsoleColor.Green;
 
 Menu newMenu = new Menu();
 BillPayReminder newMainReminder = new BillPayReminder();
+ProgramPlanner newPlanner = new ProgramPlanner();
+
 WriteColor($"{newMenu.Title}", RED);
 WriteColor("Author: Austin Campbell", CYAN);
 WriteColor("** Type -h, --help, or /? for additional commands **", CYAN);
@@ -88,6 +90,16 @@ while (exitProgram != true)
             case "-notes":
                 Notepad newNotepad = new Notepad();
                 newNotepad.Start(newNotepad);
+                break;
+            case "-pd":
+                newPlanner.StartPlanner(newPlanner);
+                break;
+            //ClassDesignerEditor
+            case "cde":
+                newPlanner.RunClassMaker(newPlanner);
+                break;
+            //FieldsDesigner
+            case "fd":
                 break;
             
 
