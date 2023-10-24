@@ -20,9 +20,9 @@ namespace ProtoDB_Project
 
         private string _menuOptions = @"
     Commands: | -pd - Opens Product Designer Module | -fd - Opens Field Designer Module
-              | -pe - Opens Policy Editor Module    | -notes - Opens Notepad Module 
+              | -cde - Opens Class Editor Module    | -notes - Opens Notepad Module 
               | -exnotes - Extracts notes in format | -expd - Extracts Program Design
-              | -exfd - Extracts Fields Design      | -newuser - Creates a new user
+              | -pe - Opens Policy Editor Module    | -newuser - Creates a new user
               | -quit - Quits the program           | -createbp - creates billpay reminder
               | -bpremind - Shows upcoming bills    | -paylog - Opens paycheck logger module
               | -debtlog - Opens Debt Logger Module | -login - Opens form to login w/ user/pass

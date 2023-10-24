@@ -8,6 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace ProtoDB_Project.src
 {
+    /* Currently Deprecated.
     internal abstract class JSONSerializer
     {
         static void Serialize(CreateBillPay data)
@@ -15,5 +16,5 @@ namespace ProtoDB_Project.src
             var options = new JsonSerializerOptions { WriteIndented = true };
             string serializer = JsonSerializer.Serialize(data);
         }
-    }
+    } */
 }

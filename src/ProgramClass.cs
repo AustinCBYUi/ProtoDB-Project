@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,6 +133,12 @@ namespace ProtoDB_Project.src
         }
 
 
+        public string GetClassnameString()
+        {
+            return _className;
+        }
+
+
         /// <summary>
         /// Iterates through created Classes, allows user to select a created class to attach a child class to.
         /// </summary>
@@ -153,7 +160,6 @@ namespace ProtoDB_Project.src
             {
                 ProgramClass getClass = planner.GetClasses()[selection - 1];
                 parent = getClass._className;
-                Console.WriteLine(parent);
             };
             getSelection();
             return parent;
@@ -180,6 +186,30 @@ namespace ProtoDB_Project.src
         {
             child = $"{child} : {parent}";
             return new ProgramClass(true, child);
+        }
+
+
+
+
+
+        /*
+         * This segment is only used to satisfy the abstract class * 
+         * 
+        */
+
+        protected override ProgramFields CreateNewAttribute(string attrName)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ProgramFields CreateNewConstructor(string conName, string optionalparam = "None")
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ProgramFields CreateNewMethod(string methName, string optionalparam = "None", string optionalreturn = "void")
+        {
+            throw new NotImplementedException();
         }
     }
 }
