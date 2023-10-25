@@ -22,6 +22,8 @@ namespace ProtoDB_Project.src
         Menu setColor = new Menu();
 
         public List<string> GetAttributes { get { return _attributes; } }
+        public List<string> GetConstructor { get {  return _constructor; } }
+        public List<string> GetMethod { get {  return _method; } }
 
         /// <summary>
         /// Starts the ProgramField Editor
@@ -121,7 +123,7 @@ namespace ProtoDB_Project.src
         private ProgramClass SelectDisplayClasses(ProgramPlanner mainPlanner)
         {
             int count = 0;
-            foreach (ProgramClass c in mainPlanner.GetClasses())
+            foreach (ProgramClass c in mainPlanner.GetClasses)
             {
                 count++;
                 setColor.WriteColor($"{count} - {c.DisplayClassName()}", ConsoleColor.Blue);
@@ -129,7 +131,7 @@ namespace ProtoDB_Project.src
             setColor.WriteColor("Which class would you like to view the fields of?", ConsoleColor.Yellow);
             int selection = int.Parse(Console.ReadLine());
 
-            ProgramClass getClass = mainPlanner.GetClasses()[selection - 1];
+            ProgramClass getClass = mainPlanner.GetClasses[selection - 1];
 
             return getClass;
         }
@@ -141,7 +143,7 @@ namespace ProtoDB_Project.src
         /// <param name="selectedClass">The selected class</param>
         private void ViewClassFields(ProgramClass selectedClass)
         {
-            setColor.WriteColor($"{selectedClass.GetClassnameString()} Fields", ConsoleColor.Cyan);
+            setColor.WriteColor($"{selectedClass.GetClassnameString} Fields", ConsoleColor.Cyan);
             setColor.WriteColor("Attributes: ", ConsoleColor.DarkYellow);
             //This doesn't really make sense now that I'm looking at it, but it works..
             foreach (ProgramFields tryThis in selectedClass.getClassFields)
@@ -193,12 +195,12 @@ namespace ProtoDB_Project.src
                 {
                     case 1:
                         Console.Write("Attribute protection(Private/Public/Etc..): ");
-                        string protection = Console.ReadLine();
+                        string protection = Console.ReadLine().ToLower();
                         Console.Write("Attribute type(String/Int/Etc..): ");
-                        string type = Console.ReadLine();
+                        string type = Console.ReadLine().ToLower();
                         Console.Write("Attribute Name: ");
                         string attrName = Console.ReadLine();
-                        string formatAttribute = $"{protection} {attrName} : {type}";
+                        string formatAttribute = $"{protection} _{attrName} : {type}";
 
                         newFields._attributes.Add(formatAttribute);
                         break;
@@ -265,9 +267,9 @@ namespace ProtoDB_Project.src
                 {
                     case 1:
                         Console.Write("Method Protection Level: ");
-                        string protect = Console.ReadLine();
+                        string protect = Console.ReadLine().ToLower();
                         Console.Write("Method Return type: ");
-                        string returns = Console.ReadLine();
+                        string returns = Console.ReadLine().ToLower();
                         Console.Write("Method Name: ");
                         string name = Console.ReadLine();
                         Console.Write("Method Parameters?: ");
@@ -294,7 +296,7 @@ namespace ProtoDB_Project.src
         private string LoopThroughClasses(ProgramPlanner mainPlanner)
         {
             int count = 0;
-            foreach (ProgramClass c in mainPlanner.GetClasses())
+            foreach (ProgramClass c in mainPlanner.GetClasses)
             {
                 count++;
                 
@@ -303,10 +305,9 @@ namespace ProtoDB_Project.src
             Console.Write("Which class would you like to add fields to?: ");
             int selection = int.Parse(Console.ReadLine());
 
-            string className = "";
-            ProgramClass getClass = mainPlanner.GetClasses()[selection - 1];
+            ProgramClass getClass = mainPlanner.GetClasses[selection - 1];
             _parentClass = getClass;
-            className = getClass.GetClassnameString();
+            string className = getClass.GetClassnameString;
 
             return className;
         }

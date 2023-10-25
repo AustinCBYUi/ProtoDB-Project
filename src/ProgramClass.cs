@@ -27,8 +27,24 @@ namespace ProtoDB_Project.src
         }
 
 
+        /// <summary>
+        /// Property that recieves the _classFields list from the ProgramClass.
+        /// </summary>
         public List<ProgramFields> getClassFields { get { return _classFields; } }
 
+
+        /// <summary>
+        /// Gets the class name of the created class as a string.
+        /// </summary>
+        /// <returns>String version of the classname</returns>
+        public string GetClassnameString {  get { return _className; } }
+
+
+        /// <summary>
+        /// Adds the ProgramFields object to the ProgramClass 'classes' list.
+        /// </summary>
+        /// <param name="mainPlanner">Required parameter</param>
+        /// <param name="newFields">Newly created field</param>
         public void AddToClassFields(ProgramPlanner mainPlanner, ProgramFields newFields)
         {
             _classFields.Add(newFields);
@@ -116,7 +132,7 @@ namespace ProtoDB_Project.src
         /// <param name="mainPlanner">Required parameter</param>
         private void DisplayClasses(ProgramPlanner mainPlanner)
         {
-            foreach (ProgramClass cClass in mainPlanner.GetClasses())
+            foreach (ProgramClass cClass in mainPlanner.GetClasses)
             {
                 Console.WriteLine(cClass.DisplayClassName());
             }
@@ -132,19 +148,13 @@ namespace ProtoDB_Project.src
             string str = "";
             if (_isInherit == true)
             {
-                str = $"Inherited: {_inheritedClass}";
+                str = $"Inherited Class: {_inheritedClass}";
             }
             else
             {
                 str = $"Class: {_className}";
             }
             return str;
-        }
-
-
-        public string GetClassnameString()
-        {
-            return _className;
         }
 
 
@@ -156,7 +166,7 @@ namespace ProtoDB_Project.src
         protected string LoopThruClasses(ProgramPlanner planner)
         {
             int counter = 0;
-            foreach (ProgramClass cName in planner.GetClasses())
+            foreach (ProgramClass cName in planner.GetClasses)
             {
                 counter++;
                 Console.WriteLine($"{counter}. {cName.DisplayClassName()}");
@@ -165,9 +175,11 @@ namespace ProtoDB_Project.src
             int selection = int.Parse(Console.ReadLine());
 
             string parent = "";
+            //Well, turns out this lambda is actually kind of useless. I suppose it is
+            //slightly more organized..
             Action getSelection = () =>
             {
-                ProgramClass getClass = planner.GetClasses()[selection - 1];
+                ProgramClass getClass = planner.GetClasses[selection - 1];
                 parent = getClass._className;
             };
             getSelection();

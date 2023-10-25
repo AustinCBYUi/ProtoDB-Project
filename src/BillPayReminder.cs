@@ -82,6 +82,7 @@ namespace ProtoDB_Project.src
         {
             string getDir = Directory.GetCurrentDirectory();
             string loadfile = $"{getDir}/BillPayReminders.txt";
+            File.Create(loadfile).Close();
             string[] lines = File.ReadAllLines(loadfile);
 
             foreach (string line in lines)

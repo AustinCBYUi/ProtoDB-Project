@@ -62,9 +62,9 @@ while (exitProgram != true)
             //create user
             case "-createuser":
                 Policies newUser = new Policies();
-                string userName = newUser.GetUserName();
-                string password = newUser.GetPassword();
-                int policy = newUser.GetPolicy();
+                string userName = newUser.GetUserName;
+                string password = newUser.GetPassword;
+                int policy = newUser.GetPolicy;
                 break;
             //create bill to pay
             case "-createbp":
@@ -120,13 +120,15 @@ while (exitProgram != true)
                     newPlanner.RunClassFieldsMaker(newPlanner);
                 }
                 break;
-            
-
-                //Tester case
-            case "-test":
-                CreateBillPay newBillTest = new CreateBillPay("eh", "10/26/2023", 55, "yes");
-                string test = newBillTest.IsBillDue();
-                Console.WriteLine(test);
+            case "-exportpd":
+                if (newPlanner.IsClasses == null)
+                {
+                    newMenu.WriteColor("You should create a program plan before exporting.", RED);
+                }
+                else
+                {
+                    newPlanner.ExportProgram(newPlanner);
+                }
                 break;
         }
     }

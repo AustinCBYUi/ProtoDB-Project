@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProtoDB_Project
 {
+    /// <summary>
+    /// Primary displays for program.
+    /// </summary>
     internal class Menu
     {
         DateTime today = DateTime.Today;
@@ -19,14 +22,14 @@ namespace ProtoDB_Project
         ";
 
         private string _menuOptions = @"
-    Commands: | -pd - Opens Product Designer Module | -fd - Opens Field Designer Module
-              | -cde - Opens Class Editor Module    | -notes - Opens Notepad Module 
-              | -exnotes - Extracts notes in format | -expd - Extracts Program Design
-              | -pe - Opens Policy Editor Module    | -newuser - Creates a new user
-              | -quit - Quits the program           | -createbp - creates billpay reminder
-              | -bpremind - Shows upcoming bills    | -paylog - Opens paycheck logger module
-              | -debtlog - Opens Debt Logger Module | -login - Opens form to login w/ user/pass
-              | -readusers - Reads from database    |
+          ||||||||||||||||||||||||||||||||||  Commands  ||||||||||||||||||||||||||||||||||
+          || -pd - Opens Product Designer Module | -fd - Opens Field Designer Module    ||
+          || -cde - Opens Class Editor Module    | -notes - Opens Notepad Module        ||
+          || -help - Displays all commands       | -exportpd - Extracts Program Design  ||
+          || -savebp - Saves Billpay Reminder to a .txt file                            ||
+          || -quit - Quits the program           | -createbp - creates billpay reminder ||
+          || -viewbp - Shows upcoming bills      | -help (cmd) - Displays help for cmd  ||
+          ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ";
         //fd is field designer, pe is policy editor
 
@@ -112,6 +115,9 @@ namespace ProtoDB_Project
                 case "fd":
                     helper = "Field Designer is a module to design fields for the program that is made in pd(Program Designer).";
                     return helper;
+                case "cde":
+                    helper = "Class Designer/Editor is a module to design classes for the program that is made in pd(Program Designer).";
+                    return helper;
                 case "pe":
                     helper = "Policy Editor is a module to edit policies of users stored in a database?";
                     return helper;
@@ -121,11 +127,8 @@ namespace ProtoDB_Project
                 case "exnotes":
                     helper = "Extract notes: Extracts created notes with a specific file name in the Notes directory.";
                     return helper;
-                case "expd":
-                    helper = "expd is Extract Program Design, it's meant to extract a program outline in a specific and easy to read way.";
-                    return helper;
-                case "exfd":
-                    helper = "exfd is Extract Field Design, only used to extract fields if the program";
+                case "exportpd":
+                    helper = "expd is Export Program Design, it's meant to extract a program outline in a specific and easy to read way.";
                     return helper;
                 case "newuser":
                     helper = "New user is a module to create a new user with a username, password and policy number.";

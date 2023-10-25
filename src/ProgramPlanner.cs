@@ -22,20 +22,18 @@ namespace ProtoDB_Project.src
         Menu setColor = new Menu();
 
 
+
         public ProgramPlanner() { }
 
-        public ProgramPlanner(string progName, string frameUsed, string featText, string appType)
-        {
-            _programName = progName;
-            _frameWorkUsed = frameUsed;
-            _featuresText = featText;
-            _applicationType = appType;
-        }
 
-
+        /// <summary>
+        /// Property to return the program's name.
+        /// </summary>
         public string ProgramName { get { return _programName; } }
 
-
+        /// <summary>
+        /// Property to return the list of ProgramClasses
+        /// </summary>
         public List<ProgramClass> IsClasses { get { return _classes; } }
 
 
@@ -53,10 +51,11 @@ namespace ProtoDB_Project.src
         }
 
 
-        public List<ProgramClass> GetClasses()
-        {
-            return _classes;
-        }
+        /// <summary>
+        /// Getter for returning the classes list, should be a property instead.
+        /// </summary>
+        /// <returns></returns>
+        public List<ProgramClass> GetClasses { get { return _classes; } }
 
 
         /// <summary>
@@ -104,6 +103,15 @@ namespace ProtoDB_Project.src
         }
 
 
+        /// <summary>
+        /// Adds the details to the instantiated planner, controls flow to being inside the ProgramPlanner.cs instead of the
+        /// main program file.
+        /// </summary>
+        /// <param name="prog">Program name as a string</param>
+        /// <param name="framework">Program framework used, as a string.</param>
+        /// <param name="feat">Features of the program as a string</param>
+        /// <param name="app">Application type as a string</param>
+        /// <param name="mainPlanner">Required parameter which transfers the instance</param>
         protected void AddToPlanner(string prog, string framework, string feat, string app, ProgramPlanner mainPlanner)
         {
             _programName = prog;
@@ -124,6 +132,10 @@ namespace ProtoDB_Project.src
         }
 
 
+        /// <summary>
+        /// Starts the fields class maker to start editing the fields of classes.
+        /// </summary>
+        /// <param name="mainPlanner">Required parameter as the primary planner manager</param>
         public void RunClassFieldsMaker(ProgramPlanner mainPlanner)
         {
             ProgramFields startClassFieldsPlanner = new ProgramFields();
@@ -144,9 +156,46 @@ namespace ProtoDB_Project.src
         /// <summary>
         /// Exports the entire program, should only be used once completely finished.
         /// </summary>
-        protected void ExportProgram()
+        public void ExportProgram(ProgramPlanner mainPlanner)
         {
-            //TODO: Export and Import functions
+            try
+            {
+                using (StreamWriter output = new StreamWriter($"{_programName}.txt"))
+                {
+                    output.WriteLine($">>> Program Name: {_programName} <<<");
+                    output.WriteLine($"Frameworks: {mainPlanner._frameWorkUsed}");
+                    output.WriteLine($"Features: \n      {mainPlanner._featuresText}");
+                    output.WriteLine($"Application Type: {mainPlanner._applicationType}\n\n");
+                    foreach (ProgramClass pClass in _classes)
+                    {
+                        output.WriteLine($"{pClass.DisplayClassName()}");
+                        foreach (ProgramFields field in pClass.getClassFields)
+                        {
+                            output.WriteLine("** Attributes **");
+                            foreach (string attributes in field.GetAttributes)
+                            {
+                                output.WriteLine($"         {attributes}");
+                            }
+                            output.WriteLine("** Constructors **");
+                            foreach (string constructors in field.GetConstructor)
+                            {
+                                output.WriteLine($"         {constructors}");
+                            }
+                            output.WriteLine("** Methods **");
+                            foreach (string methods in field.GetMethod)
+                            {
+                                output.WriteLine($"         {methods}");
+                            }
+                        }
+                        output.WriteLine("             ");
+                    }
+                }
+                setColor.WriteColor("Program has been written!", ConsoleColor.Green);
+            }
+            catch (Exception ex)
+            {
+                setColor.WriteColor($"{ex.Message}", ConsoleColor.Red);
+            }
         }
 
 

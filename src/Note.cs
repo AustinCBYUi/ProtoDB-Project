@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProtoDB_Project
 {
+    /// <summary>
+    /// Inherited class of Notepad, references an individual note created by a user to store in the Notepad.
+    /// </summary>
     internal class Note : Notepad
     {
         private string _topic;
