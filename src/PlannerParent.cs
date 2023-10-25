@@ -29,7 +29,7 @@ namespace ProtoDB_Project.src
         /// </summary>
         /// <param name="attrName">Name of the attribute</param>
         /// <returns>A ProgramFields object</returns>
-        protected abstract ProgramFields CreateNewAttribute(string attrName);
+        protected abstract void CreateAttributes(ProgramFields newFields);
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace ProtoDB_Project.src
         /// <param name="conName">Name of the constructor</param>
         /// <param name="optionalparam">Optional parameters for constructor</param>
         /// <returns>A ProgramFields Object</returns>
-        protected abstract ProgramFields CreateNewConstructor(string conName, string optionalparam = "None");
+        protected abstract void CreateConstructor(ProgramFields newFields);
 
 
         /// <summary>
@@ -48,6 +48,6 @@ namespace ProtoDB_Project.src
         /// <param name="optionalparam">Optional parameters for the method</param>
         /// <param name="optionalreturn">Optional return type for the method</param>
         /// <returns>A ProgramFields Object</returns>
-        protected abstract ProgramFields CreateNewMethod(string methName, string optionalparam = "None", string optionalreturn = "void");
+        protected abstract void CreateMethod(ProgramFields newFields);
     }
 }

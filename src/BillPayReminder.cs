@@ -12,6 +12,7 @@ namespace ProtoDB_Project.src
     /// </summary>
     internal class BillPayReminder
     {
+        //TODO: Stop this from duplicating if you create new entries?
         private List<CreateBillPay> _bills = new List<CreateBillPay>();
 
         Menu setColor = new Menu();

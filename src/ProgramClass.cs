@@ -12,6 +12,7 @@ namespace ProtoDB_Project.src
     /// </summary>
     internal class ProgramClass : PlannerParent
     {
+        private List<ProgramFields> _classFields = new List<ProgramFields>();
         private string _className;
         private string _inheritedClass;
         private bool _isInherit;
@@ -23,6 +24,14 @@ namespace ProtoDB_Project.src
         private ProgramClass(string className)
         {
             _className = className;
+        }
+
+
+        public List<ProgramFields> getClassFields { get { return _classFields; } }
+
+        public void AddToClassFields(ProgramPlanner mainPlanner, ProgramFields newFields)
+        {
+            _classFields.Add(newFields);
         }
 
 
@@ -118,7 +127,7 @@ namespace ProtoDB_Project.src
         /// Displays a formatted className. Uses a conditional to check if the class is Inherited.
         /// </summary>
         /// <returns>The formatted classname as a string.</returns>
-        private string DisplayClassName()
+        public string DisplayClassName()
         {
             string str = "";
             if (_isInherit == true)
@@ -197,19 +206,16 @@ namespace ProtoDB_Project.src
          * 
         */
 
-        protected override ProgramFields CreateNewAttribute(string attrName)
+        protected override void CreateAttributes(ProgramFields field)
         {
-            throw new NotImplementedException();
         }
 
-        protected override ProgramFields CreateNewConstructor(string conName, string optionalparam = "None")
+        protected override void CreateConstructor(ProgramFields field)
         {
-            throw new NotImplementedException();
         }
 
-        protected override ProgramFields CreateNewMethod(string methName, string optionalparam = "None", string optionalreturn = "void")
+        protected override void CreateMethod(ProgramFields field)
         {
-            throw new NotImplementedException();
         }
     }
 }

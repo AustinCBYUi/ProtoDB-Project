@@ -25,11 +25,10 @@ bool exitProgram = false;
 
 while (exitProgram != true)
 {
-    //TopLine Constructors
-
     WriteColor(">> ", MAGENTA);
     string userInput = Console.ReadLine();
 
+    //This condition is for -help, -h, or /? commands
     if (userInput.Length >= 2 && HelpRequired(userInput))
     {
         //Kind of ridiculous..
@@ -50,6 +49,9 @@ while (exitProgram != true)
     }
     else
     {
+        //Imports every time so you can quickly see what's due or whateva!
+        //This idea might bring me to make a legitimate dedicated financial CLI which is what this probably
+        //should have been focused on.
         newMainReminder.ImportBillReminder(newMainReminder);
         switch (userInput)
         {
@@ -95,11 +97,28 @@ while (exitProgram != true)
                 newPlanner.StartPlanner(newPlanner);
                 break;
             //ClassDesignerEditor
-            case "cde":
-                newPlanner.RunClassMaker(newPlanner);
+            case "-cde":
+                //Makes use of properties in ProgramPlanner
+                if (newPlanner.ProgramName == null)
+                {
+                    newMenu.WriteColor("You should use -pd to plan the program first!", RED);
+                }
+                else
+                {
+                    newPlanner.RunClassMaker(newPlanner);
+                }
                 break;
             //FieldsDesigner
-            case "fd":
+            case "-fd":
+                //Makes use of properties in ProgramPlanner
+                if (newPlanner.IsClasses == null)
+                {
+                    newMenu.WriteColor("You should use -cde to create classes first!", RED);
+                }
+                else
+                {
+                    newPlanner.RunClassFieldsMaker(newPlanner);
+                }
                 break;
             
 

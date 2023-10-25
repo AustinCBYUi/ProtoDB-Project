@@ -33,15 +33,23 @@ namespace ProtoDB_Project.src
         }
 
 
+        public string ProgramName { get { return _programName; } }
+
+
+        public List<ProgramClass> IsClasses { get { return _classes; } }
+
+
         /// <summary>
         /// Displays info that is pre-estabilished by user to the console.
         /// </summary>
         public void ProgramInfo()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Name: {_programName}");
             Console.WriteLine($"Frameworks: {_frameWorkUsed}");
             Console.WriteLine($"Features: {_featuresText}");
             Console.WriteLine($"Application Type: {_applicationType}");
+            Console.ResetColor();
         }
 
 
@@ -60,15 +68,19 @@ namespace ProtoDB_Project.src
             bool userQuit = false;
             while (userQuit != true)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("1: Create New Program Plan");
                 Console.WriteLine("2: View Program Plan");
+                Console.WriteLine("3: Exit to Menu");
                 int userChoice = int.Parse(Console.ReadLine());
+                Console.ResetColor();
 
                 switch (userChoice)
                 {
                     case 1:
                         setColor.WriteColor("Class Planner Module", ConsoleColor.Cyan);
                         setColor.WriteColor("This module is used to plan the application..\n", ConsoleColor.Cyan);
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("What is the name of the program/application?: ");
                         string progName = Console.ReadLine();
                         Console.WriteLine("What frameworks will you use?: ");
@@ -77,11 +89,15 @@ namespace ProtoDB_Project.src
                         string features = Console.ReadLine();
                         Console.WriteLine("What is the application type?(WinForms/Web App/CLI?): ");
                         string appType = Console.ReadLine();
+                        Console.ResetColor();
 
                         mainPlanner.AddToPlanner(progName, frameworks, features, appType, mainPlanner);
                         break;
                     case 2:
                         mainPlanner.ProgramInfo();
+                        break;
+                    case 3:
+                        userQuit = true;
                         break;
                 }
             }
@@ -105,6 +121,13 @@ namespace ProtoDB_Project.src
         {
             ProgramClass startClassPlanner = new ProgramClass();
             startClassPlanner.StartClassMaker(mainPlanner);
+        }
+
+
+        public void RunClassFieldsMaker(ProgramPlanner mainPlanner)
+        {
+            ProgramFields startClassFieldsPlanner = new ProgramFields();
+            startClassFieldsPlanner.StartPF(mainPlanner);
         }
 
 
