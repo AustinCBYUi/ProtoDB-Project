@@ -8,3 +8,13 @@
 
 
 Project currently writes text data to the ProtoDB Project/src/data/Debug/net6.0/ folders, so any commands you utilize will deliver there for the time being.
+
+**Working Commands**
+          ||||||||||||||||||||||||||||||||||  Commands  ||||||||||||||||||||||||||||||||||
+          || -pd - Opens Product Designer Module | -fd - Opens Field Designer Module    ||
+          || -cde - Opens Class Editor Module    | -notes - Opens Notepad Module        ||
+          || -help - Displays all commands       | -exportpd - Extracts Program Design  ||
+          || -savebp - Saves Billpay Reminder to a .txt file                            ||
+          || -quit - Quits the program           | -createbp - creates billpay reminder ||
+          || -viewbp - Shows upcoming bills      | -help (cmd) - Displays help for cmd  ||
+          ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
