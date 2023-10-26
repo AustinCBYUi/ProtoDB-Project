@@ -6,7 +6,7 @@
     <RootNamespace>ProtoDB_Project</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <BaseOutputPath>C:\Users\infra\source\repos\ProtoDB Project\src\data</BaseOutputPath>
+    <BaseOutputPath>C:\Users\infra\source\repos\ProtoDB Project\obj\Debug\net6.0</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
