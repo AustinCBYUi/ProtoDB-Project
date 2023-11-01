@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoDB_Project.src
+namespace ProtoDB_Project.src.FinancialTools
 {
     /// <summary>
     /// Reference to a list of Bills to pay.
@@ -13,6 +13,7 @@ namespace ProtoDB_Project.src
     internal class BillPayReminder
     {
         //TODO: Stop this from duplicating if you create new entries?
+        //TODO: Solution for dupe entries is a SQLiteDB
         private List<CreateBillPay> _bills = new List<CreateBillPay>();
 
         Menu setColor = new Menu();
@@ -35,7 +36,7 @@ namespace ProtoDB_Project.src
         public void ViewBills(BillPayReminder manager)
         {
             int counter = 0;
-            foreach (CreateBillPay bill in _bills) 
+            foreach (CreateBillPay bill in _bills)
             {
                 string getDueDateCondition = bill.IsBillDue();
                 counter += 1;

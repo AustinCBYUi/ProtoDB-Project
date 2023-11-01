@@ -6,13 +6,13 @@
     <RootNamespace>ProtoDB_Project</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <BaseOutputPath>C:\Users\infra\source\repos\ProtoDB Project\obj\Debug\net6.0</BaseOutputPath>
+    <BaseOutputPath>C:\Users\infra\source\repos\ProtoDB Project\obj</BaseOutputPath>
+    <Company>$(Authors)</Company>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SQLite" Version="3.13.0" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+    <PackageReference Include="MongoDB.Bson" Version="2.22.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
   </ItemGroup>
 
 </Project>

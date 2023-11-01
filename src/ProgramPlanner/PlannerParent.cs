@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoDB_Project.src
+namespace ProtoDB_Project
 {
     /// <summary>
     /// An abstract class that stores a few methods to organize potential polymorphism practices.

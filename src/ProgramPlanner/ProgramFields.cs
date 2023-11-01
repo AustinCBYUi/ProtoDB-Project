@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ProtoDB_Project.src
+namespace ProtoDB_Project
 {
     /// <summary>
     /// Reference to the individual fields in a planned program like attributes, constructors and methods.
@@ -22,8 +22,8 @@ namespace ProtoDB_Project.src
         Menu setColor = new Menu();
 
         public List<string> GetAttributes { get { return _attributes; } }
-        public List<string> GetConstructor { get {  return _constructor; } }
-        public List<string> GetMethod { get {  return _method; } }
+        public List<string> GetConstructor { get { return _constructor; } }
+        public List<string> GetMethod { get { return _method; } }
 
         /// <summary>
         /// Starts the ProgramField Editor
@@ -173,7 +173,7 @@ namespace ProtoDB_Project.src
                 }
             }
         }
-        
+
 
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace ProtoDB_Project.src
         protected override void CreateAttributes(ProgramFields newFields)
         {
             bool userExit = false;
-            
+
             while (userExit != true)
             {
                 setColor.WriteColor("1: Create New Attribute", ConsoleColor.Cyan);
@@ -299,7 +299,7 @@ namespace ProtoDB_Project.src
             foreach (ProgramClass c in mainPlanner.GetClasses)
             {
                 count++;
-                
+
                 Console.WriteLine($"{count} - {c.DisplayClassName()}");
             }
             Console.Write("Which class would you like to add fields to?: ");

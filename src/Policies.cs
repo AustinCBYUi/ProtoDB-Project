@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Security.Principal;
+using System.Security;
+using static System.Net.Http.HttpMessageInvoker;
+using System.Xml.Linq;
 
 namespace ProtoDB_Project
 {
@@ -15,45 +18,66 @@ namespace ProtoDB_Project
     internal class Policies
     {
         //Currently not using the policies class
-        private string _userName;
-        private string _password;
-        private int _policy;
+        protected string _userName { get; set; }
+        protected string _password { get; set; }
+        protected int _policy;
 
+        static readonly HttpClient client = new HttpClient();
 
-        public Policies()
+        public Policies(string dec)
         {
-            CreateNewUser();
+            if (dec == "run-main")
+            {
+                Main();
+            }
         }
 
 
-        /// <summary>
-        /// Property to get username
-        /// </summary>
-        public string GetUserName { get { return _userName; } }
+        public Policies() { }
 
-        /// <summary>
-        /// Property to get policy user policy
-        /// </summary>
-        public int GetPolicy { get { return _policy; } }
+
 
         /// <summary>
         /// Property to get password? This will not be a wise decision.
         /// </summary>
-        public string GetPassword { get { return _password; } }
-
+        public string password { get { return _password; } }
 
         /// <summary>
-        /// Creates a new user.
+        /// Property to get policy user policy
         /// </summary>
-        private void CreateNewUser()
-        {
-            Console.Write("UserName: ");
-            _userName = Console.ReadLine();
-            Console.Write("Password: ");
-            _password = Console.ReadLine();
-            _policy = 0;
-        }
+        public int policy { get { return _policy; } }
 
+
+
+        static async Task Main()
+        {
+            Policies getUser = new Policies();
+            string link = @"https://raw.githubusercontent.com/AustinCBYUi/APIsAndStuff/main/administrator";
+            try
+            {
+                using HttpResponseMessage response = await client.GetAsync(link);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                string[] parts = responseBody.Split("|");
+
+                //Works
+                //Todo: Create a encryption / decryption for public webpage.
+                //Create a login to access the application.
+                foreach (string part in parts)
+                {
+                    getUser._userName = parts[0];
+                    getUser._password = parts[1];
+                    getUser._policy = int.Parse(parts[2]);
+                    Console.WriteLine(getUser._userName + " " + getUser._password);
+                }
+            }
+            catch (HttpRequestException e) 
+            {
+                Console.WriteLine("\nException Discovered");
+                Console.WriteLine("Message :{0}", e.Message);
+            }
+        }
 
         /// <summary>
         /// Login message, deprecated

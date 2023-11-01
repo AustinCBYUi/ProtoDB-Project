@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoDB_Project
+namespace ProtoDB_Project.src.Notepad
 {
     /// <summary>
     /// Reference to a main notepad that stores multiple different notes.
@@ -14,7 +14,7 @@ namespace ProtoDB_Project
         private string _notepadName;
         private List<Note> _notes = new List<Note>();
 
-        public Notepad() 
+        public Notepad()
         {
         }
 
@@ -39,7 +39,7 @@ namespace ProtoDB_Project
                 / = Exit Notes module
                 ");
                 string inputForSwitch = Console.ReadLine().ToLower();
-                
+
                 switch (inputForSwitch)
                 {
                     case "n":
@@ -52,7 +52,7 @@ namespace ProtoDB_Project
                         Note newNote = new Note(topic, entry);
                         getPad.AddNoteToList(newNote);
                         break;
-                        //Quit
+                    //Quit
                     case "/":
                         userQuit = true;
                         break;
@@ -61,7 +61,7 @@ namespace ProtoDB_Project
                         break;
                 }
             }
-            
+
         }
 
 
@@ -108,7 +108,7 @@ namespace ProtoDB_Project
                 }
                 setColor.WriteColor("Notes written!", ConsoleColor.Green);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 setColor.WriteColor($"{ex.Message}", ConsoleColor.Red);
             }

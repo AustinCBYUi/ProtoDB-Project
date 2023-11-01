@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoDB_Project
+namespace ProtoDB_Project.src.Notepad
 {
     /// <summary>
     /// Inherited class of Notepad, references an individual note created by a user to store in the Notepad.
@@ -36,7 +36,7 @@ namespace ProtoDB_Project
         /// Returns the user entry of the note.
         /// </summary>
         /// <returns></returns>
-        public string FormatEntry() 
+        public string FormatEntry()
         {
             string newFormat = $"{_entry}";
             return newFormat;

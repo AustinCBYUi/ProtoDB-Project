@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoDB_Project.src
+namespace ProtoDB_Project
 {
     /// <summary>
     /// Primary planner / parent class. Controls all primary behaviors. Used to manage.
@@ -202,7 +202,7 @@ namespace ProtoDB_Project.src
         /// <summary>
         /// Imports the entire program for editing?
         /// </summary>
-        protected void ImportProgram() 
+        protected void ImportProgram()
         {
         }
     }

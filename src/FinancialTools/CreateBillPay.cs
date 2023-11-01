@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ProtoDB_Project.src
+namespace ProtoDB_Project.src.FinancialTools
 {
     /// <summary>
     /// References an individual bill. Accepts bill name, due date, payment amount and is bill paid or not.
@@ -94,7 +94,7 @@ namespace ProtoDB_Project.src
             return newStr;
         }
 
-        
+
         /// <summary>
         /// Function to check if the bill is due soon, not soon or past due.
         /// </summary>

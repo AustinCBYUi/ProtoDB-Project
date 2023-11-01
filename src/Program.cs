@@ -1,10 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
-using System.Data.SQLite;
 using ProtoDB_Project;
-using ProtoDB_Project.src;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using ProtoDB_Project.src;
+using ProtoDB_Project.src.Notepad;
+using ProtoDB_Project.src.FinancialTools;
+using System.Data;
+using MongoDB;
+using ProtoDB_Project.src.APIs_Dbs;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using ProtoDB_Project.src.ClientBookProto;
 
 var RED = ConsoleColor.Red;
 var MAGENTA = ConsoleColor.Magenta;
@@ -15,6 +22,15 @@ var GREEN = ConsoleColor.Green;
 Menu newMenu = new Menu();
 BillPayReminder newMainReminder = new BillPayReminder();
 ProgramPlanner newPlanner = new ProgramPlanner();
+
+//By default for a local MongoDB instance connectionString = "mongodb://localhost:27017" 
+var connectionString = "mongodb+srv://infrareddayz:YZDCRMy7WDExazW3@cluster0.mrf2h5w.mongodb.net/?retryWrites=true&w=majority";
+
+const string databaseName = "RTI_Client";
+const string collectionName = "Clients";
+
+//Database database = new Database(connectionString, databaseName);
+
 
 WriteColor($"{newMenu.Title}", RED);
 WriteColor("Author: Austin Campbell", CYAN);
@@ -61,10 +77,7 @@ while (exitProgram != true)
                 break;
             //create user
             case "-createuser":
-                Policies newUser = new Policies();
-                string userName = newUser.GetUserName;
-                string password = newUser.GetPassword;
-                int policy = newUser.GetPolicy;
+                Policies newPolicy = new Policies("run-main");
                 break;
             //create bill to pay
             case "-createbp":
@@ -129,6 +142,10 @@ while (exitProgram != true)
                 {
                     newPlanner.ExportProgram(newPlanner);
                 }
+                break;
+            case "-clmgr":
+                ClientManager manage = new ClientManager();
+                manage.Start();
                 break;
         }
     }

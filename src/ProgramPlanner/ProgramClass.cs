@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoDB_Project.src
+namespace ProtoDB_Project
 {
     /// <summary>
     /// Reference to the classes in a planned program.
@@ -37,7 +37,7 @@ namespace ProtoDB_Project.src
         /// Gets the class name of the created class as a string.
         /// </summary>
         /// <returns>String version of the classname</returns>
-        public string GetClassnameString {  get { return _className; } }
+        public string GetClassnameString { get { return _className; } }
 
 
         /// <summary>
