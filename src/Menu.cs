@@ -107,6 +107,7 @@ namespace ProtoDB_Project
         /// <returns>Command description as a string.</returns>
         public string Help(string cmd)
         {
+            //TODO: Add CM command and go through these and fix them.
             string helper = "";
             switch (cmd)
             {
