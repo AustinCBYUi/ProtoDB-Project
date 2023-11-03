@@ -29,6 +29,7 @@ namespace ProtoDB_Project
           || -savebp - Saves Billpay Reminder to a .txt file                            ||
           || -quit - Quits the program           | -createbp - creates billpay reminder ||
           || -viewbp - Shows upcoming bills      | -help (cmd) - Displays help for cmd  ||
+          || -cm - Client Manager Module         |                                      ||
           ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ";
         //fd is field designer, pe is policy editor

@@ -23,6 +23,14 @@ Menu newMenu = new Menu();
 BillPayReminder newMainReminder = new BillPayReminder();
 ProgramPlanner newPlanner = new ProgramPlanner();
 
+//Fetch data
+Policies newPolicy = new Policies();
+newPolicy.RunMain(newPolicy);
+
+//Login section
+bool userIsLoggedIn = false;
+
+
 //By default for a local MongoDB instance connectionString = "mongodb://localhost:27017" 
 var connectionString = "mongodb+srv://infrareddayz:YZDCRMy7WDExazW3@cluster0.mrf2h5w.mongodb.net/?retryWrites=true&w=majority";
 
@@ -31,15 +39,21 @@ const string collectionName = "Clients";
 
 //Database database = new Database(connectionString, databaseName);
 
+GetUserLoggedIn();
 
+
+//Start Main menu
 WriteColor($"{newMenu.Title}", RED);
 WriteColor("Author: Austin Campbell", CYAN);
 WriteColor("** Type -h, --help, or /? for additional commands **", CYAN);
 WriteColor("** type -quit to quit **", CYAN);
 WriteColor(newMenu.cmds, CYAN);
+
+//Pre-establish bool for while loop
 bool exitProgram = false;
 
-while (exitProgram != true)
+//While exit program is false and user is logged in
+while (exitProgram != true && userIsLoggedIn)
 {
     WriteColor(">> ", MAGENTA);
     string userInput = Console.ReadLine();
@@ -63,6 +77,7 @@ while (exitProgram != true)
             newMenu.ShowSpinner(1);
         }
     }
+    //If you didn't type -help, you'll start the switch
     else
     {
         //Imports every time so you can quickly see what's due or whateva!
@@ -75,10 +90,13 @@ while (exitProgram != true)
                 exitProgram = true;
                 Environment.Exit(0);
                 break;
+
             //create user
-            case "-createuser":
-                Policies newPolicy = new Policies("run-main");
+            case "-logout":
+                userIsLoggedIn = newPolicy.Logout(newPolicy);
+                GetUserLoggedIn();
                 break;
+
             //create bill to pay
             case "-createbp":
                 Console.WriteLine("Bill name: ");
@@ -93,22 +111,29 @@ while (exitProgram != true)
                 CreateBillPay newBill = new CreateBillPay(name, date, amount, paidOrNot);
                 newMainReminder.AddBillToList(newBill);
                 break;
+
             //view bills to pay
             case "-viewbp":
                 newMainReminder.ViewBills(newMainReminder);
                 break;
+
+            //Save bill pay
             case "-savebp":
                 newMainReminder.ExportBillReminder(newMainReminder);
                 WriteColor("Wrote File to Data", GREEN);
                 break;
 
+            //Notes section
             case "-notes":
                 Notepad newNotepad = new Notepad();
                 newNotepad.Start(newNotepad);
                 break;
+
+            //Program Designer / Program Planner
             case "-pd":
                 newPlanner.StartPlanner(newPlanner);
                 break;
+
             //ClassDesignerEditor
             case "-cde":
                 //Makes use of properties in ProgramPlanner
@@ -121,6 +146,7 @@ while (exitProgram != true)
                     newPlanner.RunClassMaker(newPlanner);
                 }
                 break;
+
             //FieldsDesigner
             case "-fd":
                 //Makes use of properties in ProgramPlanner
@@ -133,6 +159,8 @@ while (exitProgram != true)
                     newPlanner.RunClassFieldsMaker(newPlanner);
                 }
                 break;
+
+            //Export Program Designer
             case "-exportpd":
                 if (newPlanner.IsClasses == null)
                 {
@@ -143,21 +171,55 @@ while (exitProgram != true)
                     newPlanner.ExportProgram(newPlanner);
                 }
                 break;
-            case "-clmgr":
-                ClientManager manage = new ClientManager();
-                manage.Start();
+
+            //Client Manager
+            case "-cm":
+                if (newPolicy.policy == 3)
+                {
+                    ClientManager newManager = new ClientManager();
+                    newManager.Start();
+                }
+                else
+                {
+                    Console.WriteLine("Your policy is insufficient to access this command.");
+                    break;
+                }
                 break;
         }
     }
 }
 
 
+//Logs a user in.
+void GetUserLoggedIn()
+{
+    Clear();
+    WriteColor($"{newMenu.Title}", RED);
+    WriteColor($"           ---> Program contains sensitive information and requires login <---", ConsoleColor.DarkGray);
+    userIsLoggedIn = newPolicy.Login(newPolicy);
+
+    if (userIsLoggedIn)
+    {
+        //Shows success message for 2000 seconds
+        Thread.Sleep(2000);
+        Clear();
+    }
+    else
+    {
+        userIsLoggedIn = newPolicy.Login(newPolicy);
+    }
+}
+
+
+
+//Clears the console.
 static void Clear()
 {
     Console.Clear();
 }
 
 
+//WriteColor
 static void WriteColor(string msg, ConsoleColor color)
 {
     if (msg.StartsWith(">> "))

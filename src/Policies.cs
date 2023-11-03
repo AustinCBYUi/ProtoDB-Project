@@ -20,17 +20,11 @@ namespace ProtoDB_Project
         //Currently not using the policies class
         protected string _userName { get; set; }
         protected string _password { get; set; }
+        private static string EnteredVal = "";
         protected int _policy;
+        private bool _isLoggedIn { get; set; }
 
         static readonly HttpClient client = new HttpClient();
-
-        public Policies(string dec)
-        {
-            if (dec == "run-main")
-            {
-                Main();
-            }
-        }
 
 
         public Policies() { }
@@ -48,10 +42,14 @@ namespace ProtoDB_Project
         public int policy { get { return _policy; } }
 
 
-
-        static async Task Main()
+        public void RunMain(Policies user)
         {
-            Policies getUser = new Policies();
+            Main(user);
+        }
+
+
+        static async Task Main(Policies getUser)
+        {
             string link = @"https://raw.githubusercontent.com/AustinCBYUi/APIsAndStuff/main/administrator";
             try
             {
@@ -69,27 +67,110 @@ namespace ProtoDB_Project
                     getUser._userName = parts[0];
                     getUser._password = parts[1];
                     getUser._policy = int.Parse(parts[2]);
-                    Console.WriteLine(getUser._userName + " " + getUser._password);
                 }
             }
-            catch (HttpRequestException e) 
+            catch (HttpRequestException e)
             {
                 Console.WriteLine("\nException Discovered");
                 Console.WriteLine("Message :{0}", e.Message);
             }
         }
 
+
         /// <summary>
-        /// Login message, deprecated
+        /// User login functionality.
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        private string Login(string userName, string password)
+        /// <param name="user">Requires a user's information to login.</param>
+        /// <returns>true or false for is user logged in.</returns>
+        public bool Login(Policies user) //May need to add a parameter to get a user in the future if I have multiple logins / users.
         {
-            string loginSuccess = $"Welcome back {userName} ({_policy})";
-            string loginFailure = $"That password or username combo does not exist or is incorrect, please try again.";
-            return _userName;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("Username: ");
+            string enterUsername = Console.ReadLine();
+            if (enterUsername == _userName)
+            {
+                Console.WriteLine("Password: ");
+                HidePassword();
+                if (EnteredVal == _password)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"\n\nWelcome back {_userName}! (Level: {_policy} policy)\n\n");
+                    _isLoggedIn = true;
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("-LOGIN FAILURE-: That username or password is incorrect, please try again!");
+                    _isLoggedIn = false;
+                    Console.ResetColor();
+                    Login(user);
+                }
+            }
+            else if (enterUsername != _userName)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("-LOGIN FAILURE-: That username or password is incorrect, please try again!");
+                _isLoggedIn = false;
+                Console.ResetColor();
+                Login(user);
+            }
+            return _isLoggedIn;
+        }
+
+
+        public bool Logout(Policies user)
+        {
+            return _isLoggedIn = false;
+        }
+
+
+
+        /// <summary>
+        /// Hides password text in the form as a astericks.
+        /// </summary>
+        private void HidePassword()
+        {
+            try
+            {
+                EnteredVal = "";
+                do
+                {
+                    ConsoleKeyInfo keyEntered = Console.ReadKey(true);
+                    //Backspace shouldn't work here
+                    if (keyEntered.Key != ConsoleKey.Backspace && keyEntered.Key != ConsoleKey.Enter)
+                    {
+                        EnteredVal += keyEntered.KeyChar;
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        if (keyEntered.Key == ConsoleKey.Backspace && EnteredVal.Length > 0)
+                        {
+                            EnteredVal = EnteredVal.Substring(0, (EnteredVal.Length - 1));
+                            Console.Write("\b \b");
+                        }
+                        else if (keyEntered.Key == ConsoleKey.Enter)
+                        {
+                            if (string.IsNullOrWhiteSpace(EnteredVal))
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("Empty Value Not Accepted.");
+                                HidePassword();
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                } while (true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception:" + ex.Message);
+            }
         }
     }
 }
