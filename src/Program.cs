@@ -185,6 +185,11 @@ while (exitProgram != true && userIsLoggedIn)
                     break;
                 }
                 break;
+
+            case "-paycalc":
+                PaymentCalculator paymentCalculator = new PaymentCalculator();
+                paymentCalculator.Start();
+                break;
         }
     }
 }
