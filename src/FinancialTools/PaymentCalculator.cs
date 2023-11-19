@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProtoDB_Project.src.FinancialTools
 {
+    /// <summary>
+    /// Represents a calculator that performs operations to calculate loan payments
+    /// </summary>
     internal class PaymentCalculator
     {
         private double _monthlyPayment;
@@ -16,6 +19,9 @@ namespace ProtoDB_Project.src.FinancialTools
         public PaymentCalculator() { }
 
 
+        /// <summary>
+        /// Starts the Payment Calculator Application
+        /// </summary>
         public void Start()
         {
             string loanType = SetLoanType();
@@ -33,6 +39,10 @@ namespace ProtoDB_Project.src.FinancialTools
         }
 
 
+        /// <summary>
+        /// Sets the loan type which is used to gather additional information depending on loan type.
+        /// </summary>
+        /// <returns>A string which is used to check the input for the keywords</returns>
         private string SetLoanType()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -46,6 +56,10 @@ namespace ProtoDB_Project.src.FinancialTools
         }
 
 
+        /// <summary>
+        /// Sets the principle balance of the loan by user input.
+        /// </summary>
+        /// <returns>A double which is the principle balance</returns>
         private double SetPrinciple()
         {
             Console.ForegroundColor= ConsoleColor.Blue;
@@ -59,6 +73,10 @@ namespace ProtoDB_Project.src.FinancialTools
         }
 
 
+        /// <summary>
+        /// Sets the interest rate of the loan by user input.
+        /// </summary>
+        /// <returns>A double which is the interest rate of the loan.</returns>
         private double setInterest()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -72,6 +90,12 @@ namespace ProtoDB_Project.src.FinancialTools
         }
 
 
+        /// <summary>
+        /// Calculates Monthly Credit Card interest payment.
+        /// </summary>
+        /// <param name="interest">Interest rate as a double</param>
+        /// <param name="principle">Principle Balance as a double</param>
+        /// <returns>The monthly interest payment.</returns>
         private double CalculateMonthlyCCPayment(double interest, double principle)
         {
             double monthlyInterest = (interest / 12) / 100;
@@ -80,6 +104,13 @@ namespace ProtoDB_Project.src.FinancialTools
         }
 
 
+        /// <summary>
+        /// Calculates all payments it requires to pay off a credit card given a target payment. Displays as
+        /// months - payment - payment toward principle balance, principle balance remaining
+        /// </summary>
+        /// <param name="interest">Interest rate as a double</param>
+        /// <param name="principle">Principle balance as a double</param>
+        /// <param name="targetPayment">Target payment as a double.</param>
         private void CalculateAllPayments(double interest, double principle, double targetPayment)
         {
             //principle is 7000
@@ -97,6 +128,12 @@ namespace ProtoDB_Project.src.FinancialTools
         }
 
 
+        /// <summary>
+        /// Used to define _loanType variable, which is used to define which type of loan the program will be
+        /// calculating
+        /// </summary>
+        /// <param name="input">User input as a string (cc, car, mortgage)</param>
+        /// <returns>The _loanType variable as a string</returns>
         private string GetLoanType(string input)
         {
             if (input == "cc")
